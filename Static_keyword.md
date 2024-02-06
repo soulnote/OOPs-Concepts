@@ -149,3 +149,23 @@ Dog barks
 
 The output shows that the overridden method makeSound() from the Dog class is invoked, demonstrating that static binding has already determined the method to be called during compile-time based on the declared type of the reference variable.
 
+## When it comes to inheritance and method overriding, the following elements cannot be overridden:
+
+### Final Methods: 
+Methods declared as final in the superclass cannot be overridden by subclasses. This is because final methods are considered as sealed and cannot be modified in subclasses.
+
+### Static Methods: 
+Static methods belong to the class itself rather than instances of the class. As a result, they are resolved at compile time using static binding and cannot be overridden in subclasses.
+
+### Private Methods: 
+Private methods are not visible to subclasses and therefore cannot be overridden. They are specific to the class in which they are declared.
+
+### Constructors: 
+Constructors cannot be overridden in Java. Subclasses may have their constructors, but they cannot override the constructors of their superclass. However, constructors can be called and chained using super() or this().
+
+### Final Classes: 
+Classes declared as final cannot be subclassed, so there is no concept of overriding methods in a final class.
+
+### Static Variables: 
+Similarly to static methods, static variables are resolved at compile time and are associated with the class itself rather than instances of the class. Therefore, they cannot be overridden in subclasses.
+
