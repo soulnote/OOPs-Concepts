@@ -94,3 +94,74 @@
    - Use custom exceptions for application-specific errors.
    - Keep exception handling code concise and focused on error recovery.
    - Log exceptions with relevant information for debugging.
+
+![alt text](image.png)
+
+# Custom Exception Handling in Java
+
+Custom exception handling in Java allows you to define your own exception classes to handle specific error conditions in your application. Here's a step-by-step guide on how to create and use custom exceptions:
+
+1. **Create a Custom Exception Class**: You need to create a new class that extends either `Exception` or one of its subclasses, depending on whether you want your exception to be checked or unchecked.
+
+    ```java
+    public class CustomException extends Exception {
+        public CustomException(String message) {
+            super(message);
+        }
+    }
+    ```
+
+    Or for unchecked exceptions:
+
+    ```java
+    public class CustomRuntimeException extends RuntimeException {
+        public CustomRuntimeException(String message) {
+            super(message);
+        }
+    }
+    ```
+
+2. **Throwing the Custom Exception**: In your code, when a specific error condition occurs, you can throw your custom exception.
+
+    ```java
+    public class MyClass {
+        public void someMethod() throws CustomException {
+            // Some condition that triggers the exception
+            throw new CustomException("This is a custom exception message.");
+        }
+    }
+    ```
+
+3. **Handling the Custom Exception**: When calling methods that can throw your custom exception, you need to handle it appropriately. You can catch it like any other exception.
+
+    ```java
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                MyClass myObject = new MyClass();
+                myObject.someMethod();
+            } catch (CustomException e) {
+                System.out.println("Custom exception caught: " + e.getMessage());
+                // Handle the exception or rethrow it
+            }
+        }
+    }
+    ```
+
+4. **Optional: Rethrowing or Wrapping**: Depending on your application's requirements, you may choose to handle the exception within the catch block, rethrow it, or wrap it in another exception.
+
+    ```java
+    // Rethrow the same exception
+    catch (CustomException e) {
+        System.out.println("Custom exception caught: " + e.getMessage());
+        throw e;
+    }
+
+    // Wrap the exception in another exception
+    catch (CustomException e) {
+        System.out.println("Custom exception caught: " + e.getMessage());
+        throw new AnotherException("An error occurred", e);
+    }
+    ```
+
+Custom exceptions allow you to create more meaningful and specific error handling mechanisms in your Java applications. They are particularly useful when you need to distinguish between different error conditions and provide customized error messages or handling logic for each situation.
