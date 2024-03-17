@@ -14,23 +14,23 @@ public class ProducerConsumer {
 
 class Company {
     int n ;
-    boolean isrunning = false;
+    boolean isPresent = false;
     synchronized public void produce_item(int n) throws Exception{
-        if(isrunning){
+        if(isPresent){
             wait();
         }
         this.n= n;
         System.out.println("Produced : " + this.n);
-        isrunning = true;
+        isPresent = true;
         notify();
     }
 
     synchronized public int consume_item() throws Exception {
-        if(isrunning==false){
+        if(isPresent==false){
             wait();
         }
         System.out.println("Consumed : "+ this.n);
-        isrunning = false;
+        isPresent = false;
         notify();
         return this.n;
     }
